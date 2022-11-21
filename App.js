@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet } from "react-native";
 import RootStackScreen from "./naviagtion/RootStack";
 import { useFonts } from "expo-font";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import RootTab from "./naviagtion/RootTab";
 
 export default function App() {
   let [fontloaded] = useFonts({

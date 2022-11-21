@@ -2,6 +2,7 @@ import {
   Animated,
   Image,
   SafeAreaView,
+  KeyboardAvoidingView,
   Text,
   View,
   TouchableOpacity,
@@ -15,6 +16,8 @@ import {
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
 import styles from "./styles";
+import { Ionicons } from "@expo/vector-icons";
+import ModalComponent from "./ModalComponent";
 
 const CELL_COUNT = 5;
 const source = {
@@ -30,115 +33,75 @@ const ATMRequest = ({ navigation }) => {
     setValue,
   });
 
-  const handleVerification = () => {
-    setVisible(true);
-  };
-
-  const ModalPoup = ({ visible, children }) => {
-    const [showModal, setShowModal] = React.useState(false);
-    const scaleValue = React.useRef(new Animated.Value(0)).current;
-    React.useEffect(() => {
-      toggleModal();
-    }, [visible]);
-    const toggleModal = () => {
-      if (visible) {
-        setShowModal(true);
-        Animated.spring(scaleValue, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }).start();
-      } else {
-        setTimeout(() => setShowModal(false), 200);
-        Animated.timing(scaleValue, {
-          toValue: 0,
-          duration: 300,
-          useNativeDriver: true,
-        }).start();
-      }
-    };
+  function renderHeader() {
     return (
-      <Modal transparent visible={showModal}>
-        <View style={styles.modalBackGround}>
-          <Animated.View
-            style={[
-              styles.modalContainer,
-              { transform: [{ scale: scaleValue }] },
-            ]}
-          >
-            {children}
-          </Animated.View>
-        </View>
-      </Modal>
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: 50,
+          padding: 20,
+        }}
+        onPress={() => navigation.navigate("Account")}
+      >
+        <Ionicons name="arrow-back" size={24} color="#00adef" />
+        <Text
+          style={{
+            marginLeft: 15,
+            color: "#00adef",
+            fontSize: 18,
+            lineHeight: 22,
+          }}
+        >
+          OTP Verification
+        </Text>
+      </TouchableOpacity>
     );
-  };
-
-  const handleClose = () => {
-    setVisible(false);
-    navigation.navigate("Dashboard");
-  };
+  }
 
   return (
-    <SafeAreaView style={styles.root}>
-      <Text style={styles.title}>Verification</Text>
-      <Image style={styles.icon} source={source} />
-      <Text style={styles.subTitle}>
-        Please enter the verification code{"\n"}
-        we sent to your mobile phone
-      </Text>
+    <View>
+      {renderHeader()}
+      <SafeAreaView style={styles.root}>
+        <Text style={styles.title}>Verification</Text>
+        <Image style={styles.icon} source={source} />
+        <Text style={styles.subTitle}>
+          Please enter the verification code{"\n"}
+          we sent to your mobile phone
+        </Text>
 
-      <CodeField
-        ref={ref}
-        {...props}
-        value={value}
-        onChangeText={setValue}
-        cellCount={CELL_COUNT}
-        rootStyle={styles.codeFiledRoot}
-        keyboardType="number-pad"
-        textContentType="oneTimeCode"
-        renderCell={({ index, symbol, isFocused }) => (
-          <View
-            onLayout={getCellOnLayoutHandler(index)}
-            key={index}
-            style={[styles.cellRoot, isFocused && styles.focusCell]}
-          >
-            <Text style={styles.cellText}>
-              {symbol || (isFocused ? <Cursor /> : null)}
-            </Text>
-          </View>
-        )}
-      />
-      <TouchableOpacity style={styles.nextButton} onPress={handleVerification}>
-        <Text style={styles.nextButtonText}>Verify</Text>
-      </TouchableOpacity>
-
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ModalPoup visible={visible}>
-          <View style={{ alignItems: "center" }}>
-            <View style={styles.header}>
-              <TouchableOpacity onPress={handleClose}>
-                <Image
-                  source={require("../../assets/icons/close.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              </TouchableOpacity>
+        <CodeField
+          ref={ref}
+          {...props}
+          value={value}
+          onChangeText={setValue}
+          cellCount={CELL_COUNT}
+          rootStyle={styles.codeFiledRoot}
+          keyboardType="number-pad"
+          textContentType="oneTimeCode"
+          renderCell={({ index, symbol, isFocused }) => (
+            <View
+              onLayout={getCellOnLayoutHandler(index)}
+              key={index}
+              style={[styles.cellRoot, isFocused && styles.focusCell]}
+            >
+              <Text style={styles.cellText}>
+                {symbol || (isFocused ? <Cursor /> : null)}
+              </Text>
             </View>
-          </View>
-          <View style={{ alignItems: "center" }}>
-            <Image
-              source={require("../../assets/icons/success.png")}
-              style={{ height: 150, width: 150, marginVertical: 10 }}
-            />
-          </View>
-
-          <Text
-            style={{ marginVertical: 30, fontSize: 20, textAlign: "center" }}
-          >
-            Congratulations we have received your request!
-          </Text>
-        </ModalPoup>
-      </View>
-    </SafeAreaView>
+          )}
+        />
+        <TouchableOpacity
+          style={styles.nextButton}
+          onPress={() => setVisible(true)}
+        >
+          <Text style={styles.nextButtonText}>Verify</Text>
+        </TouchableOpacity>
+        {visible && (
+          <ModalComponent navigation={navigation} visible={visible} />
+        )}
+      </SafeAreaView>
+    </View>
   );
 };
 

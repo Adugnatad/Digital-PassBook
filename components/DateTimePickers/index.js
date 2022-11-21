@@ -15,7 +15,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Entypo from "react-native-vector-icons/Entypo";
 import Feather from "react-native-vector-icons/Feather";
 
-const DateTimePickers = ({ navigation }) => {
+const DateTimePickers = ({ navigation, setVisible }) => {
   const [startDate, setStartDate] = useState(new Date(1598051730000));
   const [endDate, setEndDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState("date");
@@ -106,6 +106,7 @@ const DateTimePickers = ({ navigation }) => {
                 start: startDate.toString(),
                 end: endDate.toString(),
                 email: email.toString(),
+                setVisibles: setVisible,
               })
             }
           >

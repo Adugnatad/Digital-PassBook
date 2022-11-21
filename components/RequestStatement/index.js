@@ -22,7 +22,7 @@ const source = {
 };
 
 const RequestStatement = ({ navigation, data }) => {
-  const { email, start, end } = data;
+  const { email, start, end, setVisibles } = data;
   const [visible, setVisible] = React.useState(false);
   const [value, setValue] = useState("");
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
@@ -115,7 +115,8 @@ const RequestStatement = ({ navigation, data }) => {
               <TouchableOpacity
                 onPress={() => {
                   setVisible(false);
-                  navigation.navigate("MyAccount");
+                  setVisibles(false);
+                  navigation.navigate("Account");
                 }}
               >
                 <Image

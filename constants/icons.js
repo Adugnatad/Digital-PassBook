@@ -18,8 +18,10 @@ const user = require("../assets/icons/user.png");
 const wallet = require("../assets/icons/wallet.png");
 const betting = require("../assets/icons/bet-on-sport.png");
 const request = require("../assets/icons/request-money.png");
+const settings = require("../assets/icons/settings.png");
 
 export default {
+  settings,
   back,
   bell,
   bill,

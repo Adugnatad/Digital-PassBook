@@ -75,7 +75,7 @@ const CardlessRequest = ({ navigation }) => {
 
   const handleClose = () => {
     setVisible(false);
-    navigation.navigate("Dashboard");
+    navigation.navigate("Account");
   };
 
   return (
