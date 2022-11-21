@@ -20,7 +20,7 @@ const CardlessVerification = ({ navigation }) => {
           marginTop: 50,
           padding: 20,
         }}
-        onPress={() => navigation.navigate("MyAccount")}
+        onPress={() => navigation.navigate("Account")}
       >
         <Ionicons name="arrow-back" size={24} color="#00adef" />
         <Text

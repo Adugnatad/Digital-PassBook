@@ -4,12 +4,13 @@ import {
   createBottomTabNavigator,
   BottomTabBar,
 } from "@react-navigation/bottom-tabs";
-import Home from "../screens/Home";
-import About from "../screens/About";
 import Svg, { Path } from "react-native-svg";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { COLORS, icons } from "../constants";
-import MyAccount from "../screens/MyAccount";
+import {
+  HomeScreenNavigator,
+  SettingScreenNavigator,
+} from "../screens/CustomNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -97,78 +98,62 @@ const CustomTabBar = (props) => {
 
 const RootTab = () => {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          postion: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          backgroundColor: "transparent",
-          elevation: 0,
-          // padding: 10,
-        },
-      }}
-      tabBar={(props) => <CustomTabBar props={props} />}
-    >
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={icons.more}
-              resizeMode="contain"
-              style={{
-                width: 25,
-                height: 25,
-                tintColor: focused ? COLORS.white : COLORS.secondary,
-              }}
-            />
-          ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
-          // headerShown: false,
+    <>
+      {/* <NavigationContainer> */}
+      <Tab.Navigator
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            postion: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: "transparent",
+            elevation: 0,
+          },
         }}
-      />
-      <Tab.Screen
-        name="About"
-        component={About}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={icons.scan}
-              resizeMode="contain"
-              style={{
-                width: 25,
-                height: 25,
-                tintColor: focused ? COLORS.white : COLORS.secondary,
-              }}
-            />
-          ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
-        }}
-      />
-      <Tab.Screen
-        name="MyAccount"
-        component={MyAccount}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={icons.user}
-              resizeMode="contain"
-              style={{
-                width: 25,
-                height: 25,
-                tintColor: focused ? COLORS.white : COLORS.secondary,
-              }}
-            />
-          ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
-          headerShown: false,
-        }}
-      />
-    </Tab.Navigator>
+        tabBar={(props) => <CustomTabBar props={props} />}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeScreenNavigator}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={icons.more}
+                resizeMode="contain"
+                style={{
+                  width: 25,
+                  height: 25,
+                  tintColor: focused ? COLORS.white : COLORS.secondary,
+                }}
+              />
+            ),
+            tabBarButton: (props) => <TabBarCustomButton {...props} />,
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={SettingScreenNavigator}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={icons.settings}
+                resizeMode="contain"
+                style={{
+                  width: 25,
+                  height: 25,
+                  tintColor: focused ? COLORS.white : COLORS.secondary,
+                }}
+              />
+            ),
+            tabBarButton: (props) => <TabBarCustomButton {...props} />,
+            headerShown: false,
+          }}
+        />
+      </Tab.Navigator>
+    </>
   );
 };
 

@@ -215,9 +215,9 @@ const SignInScreen = ({ navigation }) => {
         <View style={styles.button}>
           <TouchableOpacity
             style={styles.signIn}
-            // onPress={() => {
-            //   loginHandle(data.username, data.password);
-            // }}
+            onPress={() => {
+              navigation.navigate("Dashboard");
+            }}
           >
             <LinearGradient
               colors={["#00abef", "#00adef"]}

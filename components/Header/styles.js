@@ -1,23 +1,28 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    // padding: 20,
-    flexDirection: "row",
-    justifyContent: "center",
+  header: {
+    color: "white",
+    marginTop: 15,
+    marginLeft: 20,
+    fontSize: 15,
   },
-  detailsContainer: {
-    flexDirection: "row",
+  visible: {
+    color: "white",
+    fontSize: 15,
+    fontweight: "bold",
+    marginLeft: 23,
+    marginTop: 5,
   },
-  details: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  Title: {
-    fontSize: 25,
-    marginRight: 10,
-    fontWeight: "900",
+  saving: {
+    position: "absolute",
+    right: 0,
+    justifyContent: "flex-end",
+    color: "white",
+    // marginTop: 20,
+    fontSize: 20,
+    fontweight: "1500",
+    marginRight: 20,
   },
 });
 
