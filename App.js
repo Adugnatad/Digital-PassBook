@@ -4,6 +4,7 @@ import RootStackScreen from "./naviagtion/RootStack";
 import { useFonts } from "expo-font";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import RootTab from "./naviagtion/RootTab";
+// import Profile1 from "./screens/Profile1";
 
 export default function App() {
   let [fontloaded] = useFonts({
