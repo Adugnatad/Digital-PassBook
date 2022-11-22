@@ -56,7 +56,7 @@ const ModalComponent = ({ navigation, visible }) => {
             <TouchableOpacity
               onPress={() => {
                 // setVisible(false);
-                navigation.navigate("Account");
+                navigation.goBack();
               }}
             >
               <Image

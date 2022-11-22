@@ -1,6 +1,6 @@
 import Profile from './Profile'
 
-const ProfileScreen = () => <Profile />
+const ProfileScreen = ({ navigation }) => <Profile navigation={navigation} />
 
 ProfileScreen.navigationOptions = () => ({
   header: null,

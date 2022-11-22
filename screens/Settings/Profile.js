@@ -16,6 +16,7 @@ import Tel from './Tel'
 import Password from './Password';
 import Share from './Share';
 import ContactUs from './ContactUs';
+import Logout from './Logout';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -95,80 +96,56 @@ const styles = StyleSheet.create({
   },
 })
 
-class Contact extends Component {
-
-  renderHeader = () => {
-
-    return (
-      <View style={styles.headerContainer}>
-        <ImageBackground
-          style={styles.headerBackgroundImage}
-          blurRadius={10}
-          source={{ uri: "https://i.imgur.com/rXVcgTZ.jpg" }}
-        >
-          <View style={styles.headerColumn}>
-            <Image
-              style={styles.userImage}
-              source={{ uri: "https://i.imgur.com/GfkNpVG.jpg" }}
-            />
-            <Text style={styles.userNameText}>John</Text>
-            <View style={styles.userAddressRow}>
-              <View>
-                <Icon
-                  name="place"
-                  underlayColor="transparent"
-                  iconStyle={styles.placeIcon}
-                  onPress={this.onPressPlace}
+const Profile = ({ navigation }) => {
+  return (
+    <ScrollView style={styles.scroll}>
+      <View style={styles.container}>
+        <Card containerStyle={styles.cardContainer}>
+          <View style={styles.headerContainer}>
+            <View
+              style={styles.headerBackgroundImage}
+            >
+              <View style={styles.headerColumn}>
+                <Image
+                  style={styles.userImage}
+                  source={{ uri: "https://i.imgur.com/GfkNpVG.jpg" }}
                 />
-              </View>
-              <View style={styles.userCityRow}>
-                <Text style={styles.userCityText}>
-                  Addis Ababa, Ethiopia
-                </Text>
+                <Text style={styles.userNameText}>John</Text>
+                <View style={styles.userAddressRow}>
+                  <View>
+                    <Icon
+                      name="place"
+                      underlayColor="transparent"
+                      iconStyle={styles.placeIcon}
+                    />
+                  </View>
+                  <View style={styles.userCityRow}>
+                    <Text style={styles.userCityText}>
+                      Addis Ababa, Ethiopia
+                    </Text>
+                  </View>
+                </View>
               </View>
             </View>
           </View>
-        </ImageBackground>
+          <Tel
+            style={{ marginTop: 10 }}
+            name="John Cat"
+            number="0911562451"
+          />
+          <Email
+            name="Personal"
+            email="cat@gmail.com"
+          />
+          <Separator />
+          <Password navigation={navigation} />
+          <Share />
+          <ContactUs />
+          <Logout />
+        </Card>
       </View>
-    )
-  }
-
-  renderInfo = () => (
-    <>
-      <Tel
-        style={{ marginTop: 10 }}
-        name="John Cat"
-        number="0911562451"
-      />
-      <Email
-        name="Personal"
-        email="cat@gmail.com"
-      />
-    </>
+    </ScrollView>
   )
-
-  renderActions = () => (
-    <>
-      <Password />
-      <Share />
-      <ContactUs />
-    </>
-  )
-
-  render() {
-    return (
-      <ScrollView style={styles.scroll}>
-        <View style={styles.container}>
-          <Card containerStyle={styles.cardContainer}>
-            {this.renderHeader()}
-            {this.renderInfo()}
-            {Separator()}
-            {this.renderActions()}
-          </Card>
-        </View>
-      </ScrollView>
-    )
-  }
 }
 
-export default Contact
+export default Profile

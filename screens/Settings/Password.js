@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const Password = () => {
+const Password = ({ navigation }) => {
   return (
 
 
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate("OTP")}>
       <View style={[styles.container]}>
         <Icon
           name="form-textbox-password"

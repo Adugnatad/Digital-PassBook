@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { Icon } from 'react-native-elements'
+import Icon from "react-native-vector-icons/Octicons"
 import PropTypes from 'prop-types'
 
 const styles = StyleSheet.create({
@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
   },
   emailIcon: {
     color: 'gray',
+    marginLeft: 22,
+    marginRight: 20,
     fontSize: 30,
   },
   emailNameColumn: {
@@ -41,33 +43,27 @@ const styles = StyleSheet.create({
   },
 })
 
-const Email = ({ containerStyle, name, email }) => {
+const Logout = () => {
   return (
 
 
-
-    <View style={[styles.container, containerStyle]}>
-      <View style={styles.iconRow}>
+    <TouchableOpacity>
+      <View style={[styles.container]}>
         <Icon
-          name="email"
-          underlayColor="transparent"
-          iconStyle={styles.emailIcon}
-          onPress={() => onPressEmail()}
+          name="sign-out"
+          size={30}
+
+          style={styles.emailIcon}
         />
-      </View>
-      <View style={styles.emailRow}>
-        <View style={styles.emailColumn}>
-          <Text style={styles.emailText}>{email}</Text>
-        </View>
-        <View style={styles.emailNameColumn}>
-          {name.length !== 0 && (
-            <Text >{name}</Text>
-          )}
+        <View style={styles.emailRow}>
+          <View style={styles.emailColumn}>
+            <Text style={styles.emailText}>Logout</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
 
-export default Email
+export default Logout

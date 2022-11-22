@@ -56,34 +56,32 @@ const Tel = ({
 }) => {
 
   return (
-    <TouchableOpacity >
-      <View style={[styles.container, containerStyle]}>
-        <View style={styles.iconRow}>
-          <Icon
-            name="call"
-            underlayColor="transparent"
-            iconStyle={styles.telIcon}
-          />
+    <View style={[styles.container, containerStyle]}>
+      <View style={styles.iconRow}>
+        <Icon
+          name="call"
+          underlayColor="transparent"
+          iconStyle={styles.telIcon}
+        />
+      </View>
+      <View style={styles.telRow}>
+        <View style={styles.telNumberColumn}>
+          <Text style={styles.telNumberText}>{number}</Text>
         </View>
-        <View style={styles.telRow}>
-          <View style={styles.telNumberColumn}>
-            <Text style={styles.telNumberText}>{number}</Text>
-          </View>
-          <View style={styles.telNameColumn}>
-            {name.length !== 0 && (
-              <Text>{name}</Text>
-            )}
-          </View>
-        </View>
-        <View style={styles.smsRow}>
-          <Icon
-            name="textsms"
-            underlayColor="transparent"
-            iconStyle={styles.smsIcon}
-          />
+        <View style={styles.telNameColumn}>
+          {name.length !== 0 && (
+            <Text>{name}</Text>
+          )}
         </View>
       </View>
-    </TouchableOpacity>
+      <View style={styles.smsRow}>
+        <Icon
+          name="textsms"
+          underlayColor="transparent"
+          iconStyle={styles.smsIcon}
+        />
+      </View>
+    </View>
   )
 }
 

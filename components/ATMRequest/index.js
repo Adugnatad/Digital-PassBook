@@ -42,7 +42,7 @@ const ATMRequest = ({ navigation }) => {
           marginTop: 50,
           padding: 20,
         }}
-        onPress={() => navigation.navigate("Account")}
+        onPress={() => navigation.goBack()}
       >
         <Ionicons name="arrow-back" size={24} color="#00adef" />
         <Text
